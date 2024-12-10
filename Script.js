@@ -1,37 +1,24 @@
+const timerElement = document.getElementById("timer");
+const startButton = document.getElementById("start-button");
+
 let timer;
-let minutes = 25;
-let seconds = 0;
-let isRunning = false;
+let seconds = 25 * 60; // Default: 25 minutes
 
-function setTimer(mins) {
-    clearInterval(timer);
-    isRunning = false;
-    minutes = mins;
-    seconds = 0;
-    updateClock();
+function formatTime(sec) {
+    const minutes = Math.floor(sec / 60);
+    const seconds = sec % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-function startTimer() {
-    if (isRunning) return;
-    isRunning = true;
+startButton.addEventListener("click", () => {
+    if (timer) return; // Prevent multiple timers
     timer = setInterval(() => {
-        if (seconds === 0) {
-            if (minutes === 0) {
-                clearInterval(timer);
-                isRunning = false;
-                alert("時間到！");
-                return;
-            }
-            minutes--;
-            seconds = 59;
-        } else {
+        if (seconds > 0) {
             seconds--;
+            timerElement.textContent = formatTime(seconds);
+        } else {
+            clearInterval(timer);
+            alert("時間到！");
         }
-        updateClock();
     }, 1000);
-}
-
-function updateClock() {
-    const clock = document.getElementById("clock");
-    clock.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
+});
