@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄鐘</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">番茄鐘</h1>
+        <div class="tabs">
+            <button class="tab" onclick="setTimer(25)">專注時間</button>
+            <button class="tab" onclick="setTimer(5)">短休息</button>
+            <button class="tab" onclick="setTimer(15)">長休息</button>
+        </div>
+        <div class="clock" id="clock">
+            25:00
+        </div>
+        <button class="start-button" onclick="startTimer()">開始</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
